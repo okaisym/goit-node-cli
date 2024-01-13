@@ -9,24 +9,26 @@ program
 program.parse();
 
 const options = program.opts();
+const contacts = require('./contacts.js')
+console.log(contacts)
 
 // TODO: рефакторити
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
-      // ...
+        const allContacts = await contacts.listContacts();
       break;
 
     case "get":
-      // ... id
+        const oneContact = await contacts.getContactById(id);
       break;
 
     case "add":
-      // ... name email phone
+      const newContact = await contacts.addContact({name, email, phone});
       break;
 
     case "remove":
-      // ... id
+      const removeContact = await contacts.removeContact(id)
       break;
 
     default:
@@ -35,3 +37,4 @@ async function invokeAction({ action, id, name, email, phone }) {
 }
 
 invokeAction(options);
+

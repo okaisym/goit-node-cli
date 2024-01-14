@@ -1,10 +1,10 @@
 const fs = require('fs/promises');
-const filePath = require('path');
-const {nanoid} = require('nanoid');
-const contactsPath = filePath.resolve(__dirname, 'contacts.json');
+const filePath = require("path");
+const {nanoid} = require("nanoid");
+const contactsPath = filePath.resolve(__dirname, 'db/contacts.json');
 
 async function listContacts() {
-  const data = await fs.readFile(`${__dirname}/contacts.json`, "utf-8");
+  const data = await fs.readFile(contactsPath);
   return JSON.parse(data);
 }
 
